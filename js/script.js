@@ -163,7 +163,7 @@ multiselectInput &&
 				".multiselect__dropdown-item_current"
 			);
 			currentDropdownItem && currentDropdownItem.click();
-			resetToInitialState();
+			// resetToInitialState();
 		}
 	});
 
@@ -197,6 +197,18 @@ function resetToInitialState() {
 	resetActiveClass();
 }
 
-//==============================================
-//==============================================
-//==============================================
+// Удаление выбранных элементов клавишами
+multiselectInput &&
+	multiselectInput.addEventListener("keydown", (event) => {
+		const multiselectChoisedItems = document.querySelectorAll(
+			".multiselect__choised-item"
+		);
+
+		if (
+			multiselectInput.selectionStart === 0 &&
+			event.code === "Backspace" &&
+			multiselectChoisedItems.length
+		) {
+			multiselectChoisedItems[multiselectChoisedItems.length - 1].click();
+		}
+	});
