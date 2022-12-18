@@ -1,15 +1,12 @@
 // Переменные
-const multiselectContent = document.querySelector(".multiselect__content");
 const dropdownList = document.querySelector(".multiselect__dropdown");
-const multiselectDropdownItems = document.querySelectorAll(
-	".multiselect__dropdown-item"
-);
+const dropdownItems = document.querySelectorAll(".multiselect__dropdown-item");
 const multiselectInput = document.querySelector(".multiselect__input");
 const multiselectChoised = document.querySelector(".multiselect__choised");
 
 // Открытие дропдауна при клике по полю ввода
-multiselectContent &&
-	multiselectContent.addEventListener("click", (event) => {
+multiselectChoised &&
+	multiselectChoised.addEventListener("click", (event) => {
 		if (!event.target.closest(".multiselect__choised-item")) {
 			dropdownList.classList.remove("multiselect__dropdown_hidden");
 		}
@@ -63,7 +60,7 @@ function createNewElement(tag, styles, event, parent) {
 
 // Поиск выбранного элемента из списка
 function searchChoisedElement(text) {
-	multiselectDropdownItems.forEach((item) => {
+	dropdownItems.forEach((item) => {
 		if (text.toLowerCase() === item.textContent.toLowerCase()) {
 			item.classList.remove("multiselect__dropdown-item_choised");
 			deleteElement(text);
@@ -104,7 +101,7 @@ multiselectInput &&
 
 // Проверка совпадений текста в инпуте с элементами выпадающего списка
 function checkInputValue() {
-	multiselectDropdownItems.forEach((item) => {
+	dropdownItems.forEach((item) => {
 		if (
 			item.textContent
 				.trim()
@@ -149,7 +146,7 @@ multiselectInput &&
 
 		const items = multiselectInput.value
 			? visibleDropdownItems
-			: multiselectDropdownItems;
+			: dropdownItems;
 
 		if (event.code === "ArrowUp" || event.code === "ArrowDown") {
 			resetActiveClass();
@@ -180,7 +177,7 @@ function checkCurrentCounter(items) {
 
 // Сброс активного класса у элемента
 function resetActiveClass() {
-	multiselectDropdownItems.forEach((item) => {
+	dropdownItems.forEach((item) => {
 		item.classList.remove("multiselect__dropdown-item_current");
 	});
 }
