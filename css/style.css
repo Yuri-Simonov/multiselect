@@ -11,8 +11,8 @@ body {
 	line-height: 1.3;
 }
 
-.multiselect {
-	width: 1000px;
+.ms {
+	width: 600px;
 	position: relative;
 	border: 2px solid rgba(9, 9, 121, 1);
 	border-radius: 10px;
@@ -22,26 +22,26 @@ body {
 	cursor: pointer;
 }
 
-.multiselect__input {
+.ms__input {
 	flex: 1 1 100px;
 	font-size: 3.5vmin;
 	line-height: 1.3;
 	height: 100%;
 	background-color: #fff;
 }
-.multiselect__choised {
+.ms__chose {
 	display: flex;
 	flex-wrap: wrap;
 	gap: 10px;
 }
-.multiselect__choised-item {
+.ms__chose-item {
 	font-size: 3.5vmin;
 	background: linear-gradient(0deg, rgb(14, 99, 184), rgb(5, 6, 120));
 	border-radius: 10px;
 	color: white;
 	padding: 5px 10px;
 }
-.multiselect__dropdown {
+.ms__dropdown {
 	display: flex;
 	flex-direction: column;
 	position: absolute;
@@ -53,15 +53,15 @@ body {
 	border-radius: 10px;
 	overflow: hidden;
 }
-.multiselect__dropdown > * + * {
+.ms__dropdown > * + * {
 	padding-top: 5px;
 	border-top: 1px solid white;
 }
-.multiselect__dropdown_hidden {
+.ms__dropdown_hidden {
 	display: none;
 }
 
-.multiselect__dropdown-item {
+.ms__dropdown-item {
 	font-size: 3.5vmin;
 	display: flex;
 	justify-content: center;
@@ -70,27 +70,27 @@ body {
 	padding: 10px 26px;
 	color: white;
 }
-.multiselect__dropdown-item:not(:last-child) {
+.ms__dropdown-item:not(:last-child) {
 	padding-bottom: 5px;
 }
 
-.multiselect__dropdown-item_choised {
+.ms__dropdown-item_chose {
 	opacity: 0.5;
 	background-color: lightseagreen;
 }
-.multiselect__dropdown-item_hidden {
+.ms__dropdown-item_hidden {
 	display: none;
 }
-.multiselect__dropdown-item:first-child {
+.ms__dropdown-item:first-child {
 	padding-top: 10px;
 	border-radius: 10px 10px 0 0;
 }
-.multiselect__dropdown-item:last-child {
+.ms__dropdown-item:last-child {
 	padding-bottom: 10px;
 	border-radius: 0 0 10px 10px;
 }
-.multiselect__dropdown-item_current,
-.multiselect__dropdown-item:hover {
+.ms__dropdown-item_current,
+.ms__dropdown-item:hover {
 	background: linear-gradient(0deg, rgb(178, 123, 34), rgb(84, 50, 84));
 	border-left: 1px solid white;
 	border-right: 1px solid white;
