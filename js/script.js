@@ -1,8 +1,12 @@
+// Переменные
 const msDropdownList = document.querySelector(".ms__dropdown");
 const msDropdownItems = document.querySelectorAll(".ms__dropdown-item");
 const msInput = document.querySelector(".ms__input");
 const msChose = document.querySelector(".ms__chose");
+let visibleDropdownItems;
+let counter = -1;
 
+// Открытие дропдауна при клике по полю ввода
 msChose &&
 	msChose.addEventListener("click", (event) => {
 		if (!event.target.closest(".ms__chose-item")) {
@@ -11,18 +15,22 @@ msChose &&
 	});
 
 document.addEventListener("click", (event) => {
+	// Закрытие поля ввода при клике вне него
 	if (!event.target.closest(".ms")) {
 		msDropdownList.classList.add("ms__dropdown_hidden");
 	}
+	// Клик по выбранному элементу в поле ввода
 	if (event.target.closest(".ms__chose-item")) {
 		searchChoseElement(event.target.textContent);
 	}
 });
 
+// Инпут в фокусе = раскрываем список
 msInput.addEventListener("focus", (event) => {
 	msDropdownList.classList.remove("ms__dropdown_hidden");
 });
 
+// Клик по элементу выпадающего списка
 msDropdownList &&
 	msDropdownList.addEventListener("click", (event) => {
 		if (event.target.classList.contains("ms__dropdown-item_chose")) {
@@ -35,6 +43,7 @@ msDropdownList &&
 		msInput.focus();
 	});
 
+// Создание нового html-элемента
 function createNewElement(tag, styles, event, parent) {
 	const newElement = document.createElement(tag);
 	newElement.classList.add(...styles);
@@ -43,6 +52,7 @@ function createNewElement(tag, styles, event, parent) {
 	event.target.classList.add("ms__dropdown-item_chose");
 }
 
+// Поиск выбранного элемента из списка
 function searchChoseElement(text) {
 	msDropdownItems.forEach((item) => {
 		if (text.toLowerCase() === item.textContent.toLowerCase()) {
@@ -52,6 +62,7 @@ function searchChoseElement(text) {
 	});
 }
 
+// Удаление элемента из поля ввода
 function deleteElement(text) {
 	const msChoseItems = document.querySelectorAll(".ms__chose-item");
 	msChoseItems.forEach((item) => {
@@ -61,7 +72,7 @@ function deleteElement(text) {
 	});
 }
 
-let visibleDropdownItems;
+// Поиск элементов из выпадающего списка при вводе
 msInput &&
 	msInput.addEventListener("input", (event) => {
 		checkInputValue();
@@ -71,6 +82,7 @@ msInput &&
 		);
 	});
 
+// Проверка совпадений текста в инпуте с элементами выпадающего списка
 function checkInputValue() {
 	msDropdownItems.forEach((item) => {
 		if (
@@ -88,8 +100,7 @@ function checkInputValue() {
 	});
 }
 
-let counter = -1;
-
+// обработка событий клавиш "ArrowUp", "ArrowUp", "Enter" и "Backspace"
 msInput &&
 	msInput.addEventListener("keydown", (event) => {
 		const items = msInput.value ? visibleDropdownItems : msDropdownItems;
@@ -119,6 +130,7 @@ msInput &&
 		}
 	});
 
+// Проверка текущего значения счетчика
 function checkCurrentCounter(items) {
 	if (counter >= items.length) {
 		counter = 0;
@@ -129,17 +141,20 @@ function checkCurrentCounter(items) {
 	return counter;
 }
 
+// Сброс активного класса у элемента
 function resetActiveClass() {
 	msDropdownItems.forEach((item) => {
 		item.classList.remove("ms__dropdown-item_current");
 	});
 }
 
+// Сброс счетчика, если наводим мышкой
 msDropdownList &&
 	msDropdownList.addEventListener("mouseover", (event) => {
 		resetToInitialState();
 	});
 
+// Возврат к первоначальному состоянию
 function resetToInitialState() {
 	counter = -1;
 	resetActiveClass();
